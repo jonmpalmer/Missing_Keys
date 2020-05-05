@@ -1,0 +1,29 @@
+body {
+  margin-bottom: 200%;
+  font-family: "Arial Black", Gadget, sans-serif;
+}
+
+.head-links {
+  float: left;
+  overflow: hidden;
+  background-color: grey;
+}
+
+.head-links a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.head-links a:hover {
+  color: black;
+  background-color: white;
+}
+
+.desc {
+  text-align: center;
+  background-color: #ddd;
+  padding: 10px 20px;
+}
