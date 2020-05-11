@@ -10,6 +10,7 @@ body {
 }
 
 .head-links a {
+  float: left;
   display: block;
   color: white;
   text-align: center;
@@ -23,7 +24,7 @@ body {
 }
 
 .desc {
-  text-align: center;
+  text-align: left;
   background-color: #ddd;
   padding: 10px 20px;
 }
