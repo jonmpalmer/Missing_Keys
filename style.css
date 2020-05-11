@@ -4,7 +4,6 @@ body {
 }
 
 .head-links {
-  float: left;
   overflow: hidden;
   background-color: grey;
 }
