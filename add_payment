@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Add Payment - Missing Keys Computer Parts</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="head">
+            <header class="site-head">
+                <h1>Missing Keys Computer Parts</h1>
+            </header>
+        </div>
+        <div class="head-links">
+            <ul class="links-list">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="accounts.html">Accounts</a></li>
+                <li><a href="suppliers.html">Suppliers</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="order.html">Order</a></li>
+            </ul>
+        </div>
+        <div class="add-payment-head">
+            <h3 class="add-payment">Add Payment</h3>
+        </div>
+        <div class="customer-info-block">
+              <h4 class="username">Username </h4>
+        </div>
+        <div class="site-form">
+            <form class="cust-update-form">
+                 <div class="form-paymentname">
+                    <label for="lname">Payment Name:</label>
+                    <input type="text" name="paymentname">
+                </div>
+                <div class="form-card-number">
+                    <label for="email">Card Number: </label>
+                    <input type="text" name="cnumber" required>
+                </div>
+                <div class="form-fname">
+                    <label for="fname">Card Type:</label>
+                    <input type="text" name="ctype" required>
+                </div>
+                <div class="form-exdate">
+                    <label for="lname">Expiration Date:</label>
+                    <input type="text" name="exdate" required>
+                </div>
+                <div class="crv">
+                    <label for="add1">CRV:</label>
+                    <input type="text" name="crv" required>
+                </div>
+                <div class="form-fname">
+                    <label for="fname">First name:</label>
+                    <input type="text" name="fname" required>
+                </div>
+                <div class="form-lname">
+                    <label for="lname">Last name:</label>
+                    <input type="text" name="lname" required>
+                </div>
+                <div class="form-address1">
+                    <label for="add1">Address Line 1:</label>
+                    <input type="text" name="add1" required>
+                </div>
+                <div class="form-address2">
+                    <label for="add2">Address Line 2:</label>
+                    <input type="text" name="add2">
+                </div>
+                <div class="form-zip">
+                    <label for="zip">ZIP Code:</label>
+                    <input type="text" name="zip" required>
+                </div>
+                <div class="form-item">
+                    <input type="submit" value="Submit">
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
