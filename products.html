@@ -36,6 +36,31 @@
         <div class="products">
             <h3 class="products">Products</h3>
         </div>
+                <div>
+            <table>
+                <thead>
+                    <th>Product</th>
+                    <th>Type</th>
+                    <th>Model</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Supplier</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{name}}</td>
+                        <td>{{type}}</td>
+                        <td>{{model}}</td>
+                        <td>{{quant}}</td>
+                        <td>{{price}}</td>
+                        <td>{{supplierID}}</td>
+                        <td><button onclick= "deleteProduct {{id}})">Delete</button></td>
+                        <td><a href="update_product.html/{{id}}">Update</a></td>
+                        <td><button onclick= "displayProduct {{id}})">View Product</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <div class="product">
             <div class="row">
               <div class="col">
