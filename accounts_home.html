@@ -25,11 +25,34 @@
               <p class="customer-address">Address: </p>
               <p class="customer-phone">Phone: </p>
               <p class="customer-email">Email: </p>
-              <p class="customer-payment">Payment Method: </p>
-              <p class="customer-orders">Order History: </p>
         </div>
         <div class="update-head">
             <p><a href="update_account.html">Update Account</a></p>
+        </div>
+        <div class="paymentMethods">
+            <h3 class="orders">Payment Methods</h3>
+        </div>
+        <div>
+            <table>
+                <thead>
+                    <th>Payment ID</th>
+                    <th>Address ID</th>
+                    <th>Card Number</th>
+                    <th>CSC</th>
+                    <th>Expiration Date</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{paymentID}}</td>
+                        <td>{{addressID}}</td>
+                        <td>{{cardNumber}}</td>
+                        <td>{{csc}}</td>
+                        <td>{{expDate}}</td>
+                        <td><button onclick= "deleteAccount({{id}})">Delete</button></td>
+                        <td><a href="update_payment.html">Update</a></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         <div class="payment-head">
             <p><a href="add_payment.html">Add Payment</a></p>
