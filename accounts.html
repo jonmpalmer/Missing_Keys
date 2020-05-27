@@ -38,5 +38,26 @@
         <div class="bypass-head">
             <p><a href="accounts_home.html">Bypass Search</a></p>
         </div>
+        <div>
+            <table>
+                <thead>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{firstName}}</td>
+                        <td>{{lastName}}</td>
+                        <td>{{email}}</td>
+                        <td>{{phone}}</td>
+                        <td>{{addressID}}</td>
+                        <td><button onclick= "deleteAccount({{id}})">Delete</button></td>
+                        <td><a href="update_account.html/{{id}}">Update</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </body>
 </html>
