@@ -53,21 +53,21 @@
                         <td>{{total}}</td>
                         <td><button onclick= "viewOrder {{id}})">View Order</button></td>
                         <td><button onclick= "deleteProduct {{id}})">Delete</button></td>
-                        <td><a href="update_product.html/{{id}}">Update</a></td>
+                        <td><a href="order_list.html/{{id}}">Update</a></td>
                     </tr>
                 </tbody>
             </table>
         </div>
         <div>
-        <p><h3>Order Items</h3>h3></p>
+        <p><h3>Order Items</h3>></p>
           <div class="OrderItems">
               <div class="row">
                 <div class="col">
                   <div class="order-block">
                     <p class="order-orderid">{{orderID}}</p>
                     <p class="order-productid">{{productID}}</p>
-                    <p class="order-supplier">{{supplier}}</p>
-                    <p class="order-quantity">{{quantity}}</p>
+                    <p class="order-supplier">{{supplierID}}</p>
+                    <p class="order-quantity">{{quant}}</p>
                     <button onclick= "updateOrderItem {{id}})">Update</button>
                     <button onclick= "deleteOrderItem {{id}})">Delete</button>
                   </div>
