@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Update Order - Missing Keys Computer Parts</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="head">
+            <header class="site-head">
+                <h1>Missing Keys Computer Parts</h1>
+            </header>
+        </div>
+        <div class="head-links">
+            <a href="index.html">Home</a>
+            <a href="accounts.html">Accounts</a>
+            <a href="suppliers.html">Suppliers</a>
+            <a href="products.html">Products</a>
+            <a href="order.html">Order</a> 
+        </div>
+        <div class="update-head">
+            <h3 class="update">Current Order</h3>
+        </div>
+        <div class="order-block">
+            <p class="order-orderID">Order ID:  </p>
+            <p class="order-customerID">Customer ID: </p>
+            <p class="order-orderDate">Order Date: </p>
+            <p class="order-shippedDate">Shipped Date: </p>
+            <p class="order-items">Items: </p>
+            <p class="order-total">Total: </p>
+        </div>
+        <div class="update-head">
+            <h3 class="update">Update Order</h3>
+        </div>
+        <div class="site-form">
+            <form class="order-update-form">
+                <div class="form-customerID">
+                    <label for="customerID">Customer ID:</label>
+                    <input type="text" name="customerID" required>
+                </div>
+                <div class="form-orderDate">
+                    <label for="orderDate">Order Date:</label>
+                    <input type="text" name="orderDate" required>
+                </div>
+                <div class="form-shippedDate">
+                    <label for="shippedDate">Shipped Date:</label>
+                    <input type="text" name="shippedDate" required>
+                </div>
+                <div class="form-item">
+                    <input type="submit" value="Submit">
+                </div>
+            </form>
+        </div>
+        <div class="update-head">
+            <h3 class="update">Update Order Items</h3>
+        </div>
+        <div class="site-form">
+            <form class="items-update-form">
+                <div class="form-productID">
+                    <label for="customerID">Product ID:</label>
+                    <input type="text" name="customerID" required>
+                </div>
+                <div class="form-quant">
+                    <label for="quant">Quantity:</label>
+                    <input type="text" name="quant" required>
+                </div>
+                <div class="form-item">
+                    <input type="submit" value="Submit">
+                </div>
+            </form>
+        </div>
+        <div class="add-payment-head">
+            <p><a href="add_payment.html">Add payment method</a></p>
+        </div>
+    </body>
+</html>
