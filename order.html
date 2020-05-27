@@ -34,7 +34,46 @@
         </div>
         <div class="order-block">
             <p><a href="products.html" >Add Order</a></p>
-            <p><a href="order_list.html" >Bypass Search</a></p>
         </div>
+        <div>
+            <table>
+                <thead>
+                    <th>Order ID</th>
+                    <th>Customer ID</th>
+                    <th>Order Date</th>
+                    <th>Shipped Date</th>
+                    <th>Total</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{orderID}}</td>
+                        <td>{{customerID}}</td>
+                        <td>{{orderDate}}</td>
+                        <td>{{shippedDate}}</td>
+                        <td>{{total}}</td>
+                        <td><button onclick= "viewOrder {{id}})">View Order</button></td>
+                        <td><button onclick= "deleteProduct {{id}})">Delete</button></td>
+                        <td><a href="update_product.html/{{id}}">Update</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div>
+        <p><h3>Order Items</h3>h3></p>
+          <div class="OrderItems">
+              <div class="row">
+                <div class="col">
+                  <div class="order-block">
+                    <p class="order-orderid">{{orderID}}</p>
+                    <p class="order-productid">{{productID}}</p>
+                    <p class="order-supplier">{{supplier}}</p>
+                    <p class="order-quantity">{{quantity}}</p>
+                    <button onclick= "updateOrderItem {{id}})">Update</button>
+                    <button onclick= "deleteOrderItem {{id}})">Delete</button>
+                  </div>
+                </div>
+            </div>
+         </div>
+      </div>
     </body>
 </html>
