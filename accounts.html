@@ -15,7 +15,7 @@
             <a href="accounts.html">Accounts</a>
             <a href="suppliers.html">Suppliers</a>
             <a href="products.html">Products</a>
-            <a href="order.html">Order</a> 
+            <a href="orders.html">Orders</a> 
         </div>
         <div class="site-form">
             <form class="cust-login-form">
@@ -31,12 +31,6 @@
                     <input type="submit" value="Search">
                 </div>
             </form>
-        </div>
-        <div class="csignup-head">
-            <p><a href="add_account.html">Add Account</a></p>
-        </div>
-        <div class="bypass-head">
-            <p><a href="accounts_home.html">Bypass Search</a></p>
         </div>
         <div class="accounts">
             <h3 class="accounts">Accounts</h3>
@@ -59,9 +53,13 @@
                         <td>{{addressID}}</td>
                         <td><button onclick= "deleteAccount({{id}})">Delete</button></td>
                         <td><a href="update_account.html">Update</a></td>
+                        <td><a href="update_home.html">View</a></td>
                     </tr>
                 </tbody>
             </table>
+        </div>
+        <div class="csignup-head">
+            <p><a href="add_account.html">Add Account</a></p>
         </div>
     </body>
 </html>
