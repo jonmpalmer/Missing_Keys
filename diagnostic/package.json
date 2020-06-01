@@ -1,13 +1,13 @@
   
 {
-  "name": "hello-world",
+  "name": "Missing_Keys",
   "version": "1.0.0",
-  "description": "Hello world with express and node.js",
+  "description": "Computer Parts Sales Database",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "OSU",
+  "author": "Jon Palmer, Remi Kendig",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.13.3",
