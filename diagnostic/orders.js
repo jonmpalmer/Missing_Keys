@@ -8,7 +8,7 @@ module.exports = function(){
                 res.write(JSON.stringify(error));
                 res.end();
             }
-            context.customer = results;
+            context.order = results;
             complete();
         });
     }
@@ -24,7 +24,7 @@ module.exports = function(){
         function complete(){
             callbackCount++;
             if(callbackCount >= 2){
-                res.render('customer', context);
+                res.render('order', context);
             }
 
         }
@@ -56,7 +56,7 @@ module.exports = function(){
                 res.write(JSON.stringify(error));
                 res.end();
             }else{
-                res.redirect('/customers');
+                res.redirect('/orders');
             }
         });
     });
