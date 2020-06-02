@@ -2,13 +2,13 @@ module.exports = function(){
     var express = require('express');
     var router = express.Router();
 
-    function getOrder(res, mysql, context, complete){
+    function getOrders(res, mysql, context, complete){
         mysql.pool.query("", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
             }
-            context.order = results;
+            context.orders = results;
             complete();
         });
     }
