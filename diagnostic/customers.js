@@ -2,23 +2,23 @@ module.exports = function(){
     var express = require('express');
     var router = express.Router();
 
-    function getCustomer(res, mysql, context, complete){
+    function getCustomers(res, mysql, context, complete){
         mysql.pool.query("SELECT Customers.customerID, Customers.firstName, Customers.lastName, Addresses.addressLine1, Addresses.addressLine2, Addresses.city, Addresses.state Addresses.zip, Customers.phone, Customers.email,Payments.paymentIDFROM Customers, Addresses, PaymentsWHERE Customers.addressID = Addresses.addressID", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
             }
-            context.customer = results;
+            context.customers = results;
             complete();
         });
     }
 
-    /*Display all people. Requires web based javascript to delete users with AJAX*/
+    /*Display all customers*/
 
     router.get('/', function(req, res){
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["deletecustomer.js"];
+        context.jsscripts = ["deleteCustomer.js"];
         var mysql = req.app.get('mysql');
         getCustomer(res, mysql, context, complete);
         function complete(){
@@ -26,14 +26,13 @@ module.exports = function(){
             if(callbackCount >= 2){
                 res.render('customer', context);
             }
-
         }
     });
 
     router.get('/:id', function(req, res){
         callbackCount = 0;
         var context = {};
-        context.jsscripts = ["selectedcustomer.js", "updatecustomer.js"];
+        context.jsscripts = ["selectedCustomer.js", "updateCustomer.js"];
         var mysql = req.app.get('mysql');
         getCustomer(res, mysql, context, req.params.id, complete);
         getAddress(res, mysql, context, complete);
@@ -46,7 +45,7 @@ module.exports = function(){
         }
     });
 
-    /* Adds a person, redirects to the people page after adding */
+    /* Adds a customer*/
 
     router.post('/', function(req, res){
         var mysql = req.app.get('mysql');
@@ -79,7 +78,7 @@ module.exports = function(){
         });
     });
 
-    /* Route to delete a person, simply returns a 202 upon success. */
+    /* Route to delete a customer, returns a 202 upon success. */
 
     router.delete('/:id', function(req, res){
         var mysql = req.app.get('mysql');
