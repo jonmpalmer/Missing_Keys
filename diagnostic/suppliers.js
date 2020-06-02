@@ -3,7 +3,7 @@ module.exports = function(){
     var router = express.Router();
 
     function getSupplier(res, mysql, context, complete){
-        mysql.pool.query("", function(error, results, fields){
+        mysql.pool.query("SELECT Suppliers.supplierID, Suppliers.name, Address.addressLine1, Address.addressLine2, Address.city, Address.state Address.zip, Suppliers.phone, Suppliers.email FROM Suppliers, Addresses WHERE Supplier.addressID = Address.addressID ", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -49,8 +49,8 @@ module.exports = function(){
 
     router.post('/', function(req, res){
         var mysql = req.app.get('mysql');
-        var sql = "INSERT INTO  VALUES (?,?,?,?,?)";
-        var inserts = [req.body.addressID, req.body.firstName, req.body.lastName, req.body.phone, req.body.email];
+        var sql = "INSERT INTO Suppliers (addressID, name, phone, email) VALUES (?,?,?,?)";
+        var inserts = [req.body.addressID, req.body.name, req.body.phone, req.body.email];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
@@ -61,12 +61,12 @@ module.exports = function(){
         });
     });
 
-    /* The URI that update data is sent to in order to update an suppler */
+    /* The URI that update data is sent to in order to update a suppler */
 
     router.put('/:id', function(req, res){
         var mysql = req.app.get('mysql');
-        var sql = "UPDATE supplers";
-        var inserts = [req.body.firstName, req.body.lastName, req.body.phone, req.body.email, req.params.id];
+        var sql = "UPDATE Suppliers SET name = ?, phone = ?, email = ? WHERE supplierID = ?;";
+        var inserts = [req.body.name, req.body.phone, req.body.email, req.params.id];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
