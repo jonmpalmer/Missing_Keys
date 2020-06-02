@@ -1,1 +1,42 @@
-
+<div class="site-form">
+    <form class="supplier-search-form">
+        <div class="form-item">
+            <label for="lfname">Supplier Name:</label>
+            <input type="text" name="cname">
+        </div>
+        <div class="form-item">
+            <label for="lfname">Supplier Location:</label>
+            <input type="text" name="cname">
+        </div>
+        <div class="form-item">
+            <input type="submit" value="Search">
+        </div>
+    </form>
+</div>
+<div class="products">
+    <h3 class="products">Suppliers</h3>
+</div>
+<div>
+    <table>
+        <thead>
+            <th>Supplier</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Location</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{name}}</td>
+                <td>{{email}}</td>
+                <td>{{phone}}</td>
+                <td>{{addressID}}</td>
+                <td><button onclick= "deleteSupplier({{id}})">Delete</button></td>
+                <td><a href="update_suppliers.html">Update</a></td>
+                <td><a href="suppliers_home.html">View</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="signup-head">
+    <p><a href="add_supplier.html">Add Supplier</a></p>
+</div>
