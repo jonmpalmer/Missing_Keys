@@ -17,8 +17,8 @@ module.exports = function(){
 
     router.get('/', function(req, res){
         var callbackCount = 0;
-        var context = {};
-        context.jsscripts = ["deleteorder.js"];
+        var context = {"SELECT Orders.orderID, Orders.customerID, Orders.orderDate, Orders.shippedDate, Orders.total, OrderItems.productID, OrderItems.orderDate, OrderItems.quant, Products.name, Products.price FROM Orders, OrderItems, Products WHERE (Orders.orderID = OrderItems.orderID AND orderID = :orderSearch)"};
+        context.jsscripts = ["deleteOrder.js"];
         var mysql = req.app.get('mysql');
         getOrder(res, mysql, context, complete);
         function complete(){
@@ -33,7 +33,7 @@ module.exports = function(){
     router.get('/:id', function(req, res){
         callbackCount = 0;
         var context = {};
-        context.jsscripts = ["selectedorder.js", "updateorder.js"];
+        context.jsscripts = ["selectOrder.js", "updateOrder.js"];
         var mysql = req.app.get('mysql');
         getOrder(res, mysql, context, req.params.id, complete);
         function complete(){
@@ -49,8 +49,8 @@ module.exports = function(){
 
     router.post('/', function(req, res){
         var mysql = req.app.get('mysql');
-        var sql = "INSERT INTO  VALUES (?,?,?,?,?)";
-        var inserts = [req.body.addressID, req.body.firstName, req.body.lastName, req.body.phone, req.body.email];
+        var sql = "INSERT INTO Orders VALUES (?,?,?,?,?)";
+        var inserts = [req.body.orderID];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
@@ -66,7 +66,7 @@ module.exports = function(){
     router.put('/:id', function(req, res){
         var mysql = req.app.get('mysql');
         var sql = "UPDATE Orders";
-        var inserts = [req.body.firstName, req.body.lastName, req.body.phone, req.body.email, req.params.id];
+        var inserts = [req.body.orderID, req.body.customerID, req.body.orderDate, req.body.shippedDate, req.body.total, req.params.id];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
