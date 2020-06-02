@@ -1,1 +1,84 @@
-
+<table>
+  <thead>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Address</th>
+  </thead>
+  <tbody>
+      <div class="head">
+          <header class="site-head">
+              <h1>Missing Keys Computer Parts</h1>
+          </header>
+      </div>
+      <div class="head-links">
+          <a href="index.html">Home</a>
+          <a href="accounts.html">Accounts</a>
+          <a href="suppliers.html">Suppliers</a>
+          <a href="products.html">Products</a>
+          <a href="orders.html">Orders</a> 
+      </div>
+      <div class="site-form">
+          <form class="order-form">
+              <div class="form-item">
+                  <label for="orderid">Order ID:</label>
+                  <input type="text" name="orderid">
+              </div>
+              <div class="form-item">
+                  <label for="orderdate">Order Date:</label>
+                  <input type="text" name="orderdate">
+              </div>
+              <div class="form-item">
+                  <input type="submit" value="Search">
+              </div>
+          </form>
+      </div>
+      <div class="orders">
+          <h3 class="orders">Orders</h3>
+      </div>
+      <div>
+          <table>
+              <thead>
+                  <th>Order ID</th>
+                  <th>Customer ID</th>
+                  <th>Order Date</th>
+                  <th>Shipped Date</th>
+                  <th>Total</th>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td>{{orderID}}</td>
+                      <td>{{customerID}}</td>
+                      <td>{{orderDate}}</td>
+                      <td>{{shippedDate}}</td>
+                      <td>{{total}}</td>
+                      <td><button onclick= "viewOrder {{id}})">View Order</button></td>
+                      <td><button onclick= "deleteProduct {{id}})">Delete</button></td>
+                      <td><a href="update_order.html">Update</a></td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+      <div>
+      <p><h3>Order Items</h3></p>
+        <div class="OrderItems">
+            <div class="row">
+              <div class="col">
+                <div class="order-block">
+                  <p class="order-orderid">{{orderID}}</p>
+                  <p class="order-productid">{{productID}}</p>
+                  <p class="order-supplier">{{supplierID}}</p>
+                  <p class="order-quantity">{{quant}}</p>
+                  <p><button onclick= "deleteOrderItem {{id}})">Delete</button>
+                  <a href="update_order.html">Update</a></p>  
+                </div>
+              </div>
+          </div>
+       </div>
+    </div>
+    <div class="order-block">
+          <p><a href="add_order.html" >Add Order</a></p>
+    </div>
+  </tbody>
+</table>
