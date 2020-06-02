@@ -24,19 +24,6 @@ module.exports = function(){
         });
     }
 
-    function getPerson(res, mysql, context, id, complete){
-        var sql = "SELECT id, fname, lname, homeworld, age FROM bsg_people WHERE id = ?";
-        var inserts = [id];
-        mysql.pool.query(sql, inserts, function(error, results, fields){
-            if(error){
-                res.write(JSON.stringify(error));
-                res.end();
-            }
-            context.person = results[0];
-            complete();
-        });
-    }
-
     /*Display all people. Requires web based javascript to delete users with AJAX*/
 
     router.get('/', function(req, res){
