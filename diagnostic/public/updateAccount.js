@@ -1,8 +1,8 @@
-function updateAccount(id){
+function updateCustomer(id){
     $.ajax({
-        url: '/accounts/' + id,
+        url: '/customers/' + id,
         type: 'PUT',
-        data: $('#update-account').serialize(),
+        data: $('#update-customer').serialize(),
         success: function(result){
             window.location.replace("./");
         }
