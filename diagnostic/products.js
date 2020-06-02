@@ -61,7 +61,7 @@ module.exports = function(){
         });
     });
 
-    /* The URI that update data is sent to in order to update an product */
+    /* The URI that update data is sent to in order to update a product */
 
     router.put('/:id', function(req, res){
         var mysql = req.app.get('mysql');
@@ -78,7 +78,7 @@ module.exports = function(){
         });
     });
 
-    /* Route to delete an order*/
+    /* Route to delete a product*/
 
     router.delete('/:id', function(req, res){
         var mysql = req.app.get('mysql');
