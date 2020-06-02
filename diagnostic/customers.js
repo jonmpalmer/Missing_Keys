@@ -8,7 +8,7 @@ module.exports = function(){
                 res.write(JSON.stringify(error));
                 res.end();
             }
-            context.planets  = results;
+            context.address  = results;
             complete();
         });
     }
@@ -19,7 +19,7 @@ module.exports = function(){
                 res.write(JSON.stringify(error));
                 res.end();
             }
-            context.people = results;
+            context.customer = results;
             complete();
         });
     }
