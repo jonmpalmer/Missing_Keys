@@ -24,7 +24,7 @@ module.exports = function(){
         function complete(){
             callbackCount++;
             if(callbackCount >= 2){
-                res.render('customer', context);
+                res.render('product', context);
             }
 
         }
@@ -39,7 +39,7 @@ module.exports = function(){
         function complete(){
             callbackCount++;
             if(callbackCount >= 2){
-                res.render('update-order', context);
+                res.render('update-product', context);
             }
 
         }
