@@ -1,6 +1,6 @@
-<h1>Update {{account.firstname}} {{account.lastname}}:</h1>
-<form id="update-account" action="/account" method="post">
-    First name: <input type="text" name="firstname" value="{{account.firstname}}"><br>
-    Last name: <input type="text" name="lastname" value="{{account.lastname}}"><br>
+<h1>Update {{customer.firstname}} {{customer.lastname}}:</h1>
+<form id="update-customer" action="/customer" method="post">
+    First name: <input type="text" name="firstname" value="{{customer.firstname}}"><br>
+    Last name: <input type="text" name="lastname" value="{{customer.lastname}}"><br>
 </form>
-<button onclick="updateAccount({{account.customerID}})">Update</button>
+<button onclick="updateCustomer({{customer.customerID}})">Update</button>
