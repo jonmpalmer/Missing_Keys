@@ -3,7 +3,7 @@ module.exports = function(){
     var router = express.Router();
 
     function getProduct(res, mysql, context, complete){
-        mysql.pool.query("", function(error, results, fields){
+        mysql.pool.query("SELECT Products.name, Products.type, Products.model, Products.description, Products.quant, Products.price, Products.image, Suppliers.supplierID, Suppliers.name FROM Products, Suppliers WHERE (Products.supplierID = Suppliers.supplierID", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -18,7 +18,7 @@ module.exports = function(){
     router.get('/', function(req, res){
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["deleteproduct.js"];
+        context.jsscripts = ["deleteProduct.js"];
         var mysql = req.app.get('mysql');
         getOrder(res, mysql, context, complete);
         function complete(){
@@ -49,8 +49,8 @@ module.exports = function(){
 
     router.post('/', function(req, res){
         var mysql = req.app.get('mysql');
-        var sql = "INSERT INTO  VALUES (?,?,?,?,?)";
-        var inserts = [req.body.addressID, req.body.firstName, req.body.lastName, req.body.phone, req.body.email];
+        var sql = "INSERT INTO Products (supplierID, name, type, model, description, quant, price, image) VALUES (?,?,?,?,?,?,?,?)";
+        var inserts = [req.body.supplierID, req.body.name, req.body.type, req.body.model, req.body.descrpition, req.body.quant, req.body.price, req.body.image];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
@@ -65,8 +65,8 @@ module.exports = function(){
 
     router.put('/:id', function(req, res){
         var mysql = req.app.get('mysql');
-        var sql = "UPDATE products";
-        var inserts = [req.body.firstName, req.body.lastName, req.body.phone, req.body.email, req.params.id];
+        var sql = "UPDATE Products SET name = ?, type = ?, model = ?, description = ?, quant = ?, price = ?, image = ? WHERE productsID = ?;";
+        var inserts = [req.body.name, req.body.type, req.body.model, req.body.description, req.body.quant, req.body.price,req.body.image req.params.id];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
@@ -82,7 +82,7 @@ module.exports = function(){
 
     router.delete('/:id', function(req, res){
         var mysql = req.app.get('mysql');
-        var sql = "DELETE FROM orders WHERE id = ?";
+        var sql = "DELETE FROM products WHERE id = ?";
         var inserts = [req.params.id];
         sql = mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
