@@ -78,7 +78,7 @@ module.exports = function(){
         });
     });
 
-    /* Route to delete a person, simply returns a 202 upon success. */
+    /* Route to delete an order*/
 
     router.delete('/:id', function(req, res){
         var mysql = req.app.get('mysql');
