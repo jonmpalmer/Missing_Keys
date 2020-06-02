@@ -2,19 +2,8 @@ module.exports = function(){
     var express = require('express');
     var router = express.Router();
 
-    function getAddress(res, mysql, context, complete){
-        mysql.pool.query("SELECT id, name FROM bsg_planets", function(error, results, fields){
-            if(error){
-                res.write(JSON.stringify(error));
-                res.end();
-            }
-            context.address  = results;
-            complete();
-        });
-    }
-
     function getCustomer(res, mysql, context, complete){
-        mysql.pool.query("SELECT bsg_people.id, fname, lname, bsg_planets.name AS homeworld, age FROM bsg_people INNER JOIN bsg_planets ON homeworld = bsg_planets.id", function(error, results, fields){
+        mysql.pool.query("SELECT Customers.customerID, Customers.firstName, Customers.lastName, Addresses.addressLine1, Addresses.addressLine2, Addresses.city, Addresses.state Addresses.zip, Customers.phone, Customers.email,Payments.paymentIDFROM Customers, Addresses, PaymentsWHERE Customers.addressID = Addresses.addressID", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -32,11 +21,10 @@ module.exports = function(){
         context.jsscripts = ["deletecustomer.js"];
         var mysql = req.app.get('mysql');
         getCustomer(res, mysql, context, complete);
-        getAddress(res, mysql, context, complete);
         function complete(){
             callbackCount++;
             if(callbackCount >= 2){
-                res.render('people', context);
+                res.render('customer', context);
             }
 
         }
@@ -62,24 +50,24 @@ module.exports = function(){
 
     router.post('/', function(req, res){
         var mysql = req.app.get('mysql');
-        var sql = "INSERT INTO bsg_people (fname, lname, homeworld, age) VALUES (?,?,?,?)";
-        var inserts = [req.body.fname, req.body.lname, req.body.homeworld, req.body.age];
+        var sql = "INSERT INTO Customers (addressID, firstName, lastName, phone, email) VALUES (?,?,?,?,?)";
+        var inserts = [req.body.addressID, req.body.firstName, req.body.lastName, req.body.phone, req.body.email];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
             }else{
-                res.redirect('/people');
+                res.redirect('/customers');
             }
         });
     });
 
-    /* The URI that update data is sent to in order to update a person */
+    /* The URI that update data is sent to in order to update a customer */
 
     router.put('/:id', function(req, res){
         var mysql = req.app.get('mysql');
-        var sql = "UPDATE bsg_people SET fname=?, lname=?, homeworld=?, age=? WHERE id=?";
-        var inserts = [req.body.fname, req.body.lname, req.body.homeworld, req.body.age, req.params.id];
+        var sql = "UPDATE Customers SET firstName = ?, lastName = ?, phone = ?, email = ? WHERE customerID = ?;";
+        var inserts = [req.body.firstName, req.body.lastName, req.body.phone, req.body.email, req.params.id];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
@@ -91,7 +79,7 @@ module.exports = function(){
         });
     });
 
-    /* Route to delete a person, simply returns a 202 upon success. Ajax will handle this. */
+    /* Route to delete a person, simply returns a 202 upon success. */
 
     router.delete('/:id', function(req, res){
         var mysql = req.app.get('mysql');
