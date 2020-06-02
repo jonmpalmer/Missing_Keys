@@ -1,1 +1,76 @@
-
+<div class="site-form">
+    <form class="prod-search-form">
+        <div class="form-item">
+            <label for="lfname">Product: </label>
+            <input type="text" name="username">
+        </div>
+        <div class="form-item">
+            <label for="lpass">Model: </label>
+            <input type="text">
+        </div>
+        <div class="form-item">
+            <input type="submit" value="Search">
+        </div>
+    </form>
+</div>
+<div class="products">
+    <h3 class="products">Products</h3>
+</div>
+        <div>
+    <table>
+        <thead>
+            <th>Product</th>
+            <th>Type</th>
+            <th>Model</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Supplier</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{name}}</td>
+                <td>{{type}}</td>
+                <td>{{model}}</td>
+                <td>{{quant}}</td>
+                <td>{{price}}</td>
+                <td>{{supplierID}}</td>
+                <td><button onclick= "viewProduct {{id}})">View Product</button></td>
+                <td><button onclick= "deleteProduct {{id}})">Delete</button></td>
+                <td><a href="update_product.html">Update</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="products">
+    <h3 class="products">Selected Product</h3>
+</div>
+<div class="product">
+    <div class="row">
+      <div class="col">
+        <div class="product-block">
+          <p class="product-name">Retro Keyboard</p>
+          <p class="product-desc">Description: Retro IBM computer keyboard</p>
+          <p class="product-price">Model: IBM Model F</p>
+          <p class="product-price">Price: 20.00</p>
+        </div>
+     </div>
+     </div>
+  <div>
+  <img src="productsMK.jpg" alt="Retro Keyboard">
+  </div>
+  <div class="site-form">
+       <form class="add-order-form">
+            <div class="form-addOrder">
+                <label for="orderID">Order ID: </label>
+                <input type="text" name="orderID">
+            </div>
+            <div class="form-quant">
+                <label for="quant">Quantity:</label>
+                <input type="text" name="quant" required>
+            </div>
+            <div class="form-item">
+                <input type="submit" value="Add to Order">
+            </div>
+     </form>
+   </div>    
+</div>
