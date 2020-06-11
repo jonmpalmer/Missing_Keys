@@ -27,6 +27,7 @@
             <th>Supplier</th>
         </thead>
         <tbody>
+        {{#each people}} 
             <tr>
                 <td>{{name}}</td>
                 <td>{{type}}</td>
@@ -38,6 +39,7 @@
                 <td><button onclick= "deleteProduct {{id}})">Delete</button></td>
                 <td><a href="update_product.html">Update</a></td>
             </tr>
+            {{/each}} 
         </tbody>
     </table>
 </div>
