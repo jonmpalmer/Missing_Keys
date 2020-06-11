@@ -27,14 +27,14 @@
 		<th>Address</th>
 	    </thead>
 	    <tbody>
-		{{#each customer}} 
+		{{#each Customers}} 
 		<tr>
 		    <td>{{firstName}}</td>
 		    <td>{{lastName}}</td>
 		    <td>{{email}}</td>
 		    <td>{{phone}}</td>
 		    <td>{{addressID}}</td>
-		    <td><button onclick= "deleteAccount({{id}})">Delete</button></td>
+		    <td><button onclick= "deleteAccount({{customerID}})">Delete</button></td>
 		    <td><a href="update_account.html">Update</a></td>
 		    <td><a href="accounts_home.html">View</a></td>
 		</tr>
