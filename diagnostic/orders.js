@@ -14,7 +14,7 @@ module.exports = function(){
     }
         
     function getOrder(res, mysql, context, orderID, complete){
-        var sql = "SELECT SELECT orderID, customerID, orderDate, shippedDate, total FROM Orders WHERE orderID = ?";
+        var sql = "SELECT orderID, customerID, orderDate, shippedDate, total FROM Orders WHERE orderID = ?";
         var inserts = [orderID];
         mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
