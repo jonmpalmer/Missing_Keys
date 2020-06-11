@@ -2,13 +2,26 @@ module.exports = function(){
     var express = require('express');
     var router = express.Router();
 
-    function getSupplier(res, mysql, context, complete){
-        mysql.pool.query("SELECT Suppliers.supplierID, Suppliers.name, Address.addressLine1, Address.addressLine2, Address.city, Address.state Address.zip, Suppliers.phone, Suppliers.email FROM Suppliers, Addresses WHERE Supplier.addressID = Address.addressID ", function(error, results, fields){
+    function getSuppliers(res, mysql, context, complete){
+        mysql.pool.query("SELECT supplierID, name, phone, email FROM Suppliers", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
             }
-            context.supplier = results;
+            context.suppliers = results;
+            complete();
+        });
+    }
+    
+    function getSupplier(res, mysql, context, supplierID, complete){
+        var sql = "SELECT supplierID, name, phone, email FROM Suppliers WHERE supplierID = ?";
+        var inserts = [supplierID];
+        mysql.pool.query(sql, inserts, function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.supplier = results[0];
             complete();
         });
     }
@@ -16,32 +29,22 @@ module.exports = function(){
     /*Display all suppliers */
 
     router.get('/', function(req, res){
-        var callbackCount = 0;
         var context = {};
         context.jsscripts = ["deleteSupplier.js"];
         var mysql = req.app.get('mysql');
-        getSupplier(res, mysql, context, complete);
+        getSuppliers(res, mysql, context, complete);
         function complete(){
-            callbackCount++;
-            if(callbackCount >= 2){
-                res.render('supplier', context);
-            }
-
+            res.render('supplier', context);
         }
     });
 
-    router.get('/:id', function(req, res){
-        callbackCount = 0;
+    router.get('/:supplierID', function(req, res){
         var context = {};
         context.jsscripts = ["selectedSupplier.js", "updateSupplier.js"];
         var mysql = req.app.get('mysql');
-        getSupplier(res, mysql, context, req.params.id, complete);
+        getSupplier(res, mysql, context, req.params.supplierID, complete);
         function complete(){
-            callbackCount++;
-            if(callbackCount >= 2){
-                res.render('update-supplier', context);
-            }
-
+            res.render('update-supplier', context);
         }
     });
 
@@ -63,10 +66,10 @@ module.exports = function(){
 
     /* The URI that update data is sent to in order to update a suppler */
 
-    router.put('/:id', function(req, res){
+    router.put('/:supplierID', function(req, res){
         var mysql = req.app.get('mysql');
         var sql = "UPDATE Suppliers SET name = ?, phone = ?, email = ? WHERE supplierID = ?;";
-        var inserts = [req.body.name, req.body.phone, req.body.email, req.params.id];
+        var inserts = [req.body.name, req.body.phone, req.body.email, req.params.supplierID];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
@@ -80,10 +83,10 @@ module.exports = function(){
 
     /* Route to delete an suppler*/
 
-    router.delete('/:id', function(req, res){
+    router.delete('/:supplierID', function(req, res){
         var mysql = req.app.get('mysql');
-        var sql = "DELETE FROM supplers WHERE id = ?";
-        var inserts = [req.params.id];
+        var sql = "DELETE FROM supplers WHERE supplierID = ?";
+        var inserts = [req.params.supplierID];
         sql = mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
