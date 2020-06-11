@@ -13,6 +13,9 @@ app.set('port', process.argv[2]);
 app.set('mysql', mysql);
 
 app.use('/customers', require('./customers.js'));
+app.use('/suppliers', require('./suppliers.js'));
+app.use('/products', require('./products.js'));
+app.use('/orders', require('./orders.js'));
 
 app.use(function(req,res){
   res.status(404);
