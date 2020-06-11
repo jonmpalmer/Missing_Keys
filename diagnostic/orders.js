@@ -48,7 +48,7 @@ module.exports = function(){
         function complete(){
             callbackCount++;
             if(callbackCount >= 2){
-                res.render('updateOrder', context);
+                res.render('update-order', context);
             }
 
         }
