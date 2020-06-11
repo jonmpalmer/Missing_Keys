@@ -33,7 +33,7 @@ module.exports = function(){
         var context = {};
         context.jsscripts = ["deleteOrder.js"];
         var mysql = req.app.get('mysql');
-        getOrder(res, mysql, context, complete);
+        getOrders(res, mysql, context, complete);
         function complete(){
             res.render('orders', context);
         }
@@ -46,12 +46,7 @@ module.exports = function(){
         var mysql = req.app.get('mysql');
         getOrder(res, mysql, context, req.params.id, complete);
         function complete(){
-            callbackCount++;
-            if(callbackCount >= 2){
-                res.render('update-order', context);
-            }
-
-        }
+            res.render('update-order', context);
     });
 
     /* Adds an order */
