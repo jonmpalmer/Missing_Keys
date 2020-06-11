@@ -13,9 +13,9 @@ module.exports = function(){
         });
     }
     
-    function getCustomer(res, mysql, context, id, complete){
-        var sql = "SELECT customerID, firstName, lastName, phone, email FROM Customers WHERE id = ?";
-        var inserts = [id];
+    function getCustomer(res, mysql, context, customerID, complete){
+        var sql = "SELECT customerID, firstName, lastName, phone, email FROM Customers WHERE customerID = ?";
+        var inserts = [customerID];
         mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
@@ -38,11 +38,11 @@ module.exports = function(){
         }
     });
 
-    router.get('/:id', function(req, res){
+    router.get('/:customerID', function(req, res){
         var context = {};
         context.jsscripts = ["selectedCustomer.js", "updateCustomer.js"];
         var mysql = req.app.get('mysql');
-        getCustomer(res, mysql, context, req.params.id, complete);
+        getCustomer(res, mysql, context, req.params.customerID, complete);
         function complete(){
             res.render('update-customer', context);
         }
@@ -52,7 +52,7 @@ module.exports = function(){
 
     router.post('/', function(req, res){
         var mysql = req.app.get('mysql');
-        var sql = "INSERT INTO Customers (addressID, firstName, lastName, phone, email) VALUES (?,?,?,?,?)";
+        var sql = "INSERT INTO Customers (customerID, firstName, lastName, phone, email) VALUES (?,?,?,?,?)";
         var inserts = [req.body.addressID, req.body.firstName, req.body.lastName, req.body.phone, req.body.email];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
@@ -66,10 +66,10 @@ module.exports = function(){
 
     /* The URI that update data is sent to in order to update a customer */
 
-    router.put('/:id', function(req, res){
+    router.put('/:customerID', function(req, res){
         var mysql = req.app.get('mysql');
         var sql = "UPDATE Customers SET firstName = ?, lastName = ?, phone = ?, email = ? WHERE customerID = ?;";
-        var inserts = [req.body.firstName, req.body.lastName, req.body.phone, req.body.email, req.params.id];
+        var inserts = [req.body.firstName, req.body.lastName, req.body.phone, req.body.email, req.params.customerID];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
@@ -83,10 +83,10 @@ module.exports = function(){
 
     /* Route to delete a customer, returns a 202 upon success. */
 
-    router.delete('/:id', function(req, res){
+    router.delete('/:customerID', function(req, res){
         var mysql = req.app.get('mysql');
-        var sql = "DELETE FROM customers WHERE id = ?";
-        var inserts = [req.params.id];
+        var sql = "DELETE FROM Customers WHERE customerID = ?";
+        var inserts = [req.params.customerID];
         sql = mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
