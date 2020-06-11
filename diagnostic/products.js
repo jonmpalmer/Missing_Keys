@@ -3,7 +3,7 @@ module.exports = function(){
     var router = express.Router();
 
     function getProducts(res, mysql, context, complete){
-        mysql.pool.query("SELECT name, type, model, description, quant, price", function(error, results, fields){
+        mysql.pool.query("SELECT name, type, model, description, quant, price FROM Products", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
