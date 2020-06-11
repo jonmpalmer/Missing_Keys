@@ -3,7 +3,7 @@ module.exports = function(){
     var router = express.Router();
 
     function getOrders(res, mysql, context, complete){
-        mysql.pool.query("", function(error, results, fields){
+        mysql.pool.query("SELECT orderID, customerID, orderDate, shippedDate, total FROM Orders", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -12,21 +12,30 @@ module.exports = function(){
             complete();
         });
     }
+        
+    function getOrder(res, mysql, context, orderID, complete){
+        var sql = "SELECT SELECT orderID, customerID, orderDate, shippedDate, total FROM Orders WHERE orderID = ?";
+        var inserts = [orderID];
+        mysql.pool.query(sql, inserts, function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.order = results[0];
+            complete();
+        });
+    }
+
 
     /*Display all orders */
 
     router.get('/', function(req, res){
-        var callbackCount = 0;
-        var context = {"SELECT Orders.orderID, Orders.customerID, Orders.orderDate, Orders.shippedDate, Orders.total, OrderItems.productID, OrderItems.orderDate, OrderItems.quant, Products.name, Products.price FROM Orders, OrderItems, Products WHERE (Orders.orderID = OrderItems.orderID AND orderID = :orderSearch)"};
+        var context = {"SELECT orderID, customerID, orderDate, shippedDate, total FROM Orders WHERE orderID = ?"};
         context.jsscripts = ["deleteOrder.js"];
         var mysql = req.app.get('mysql');
         getOrder(res, mysql, context, complete);
         function complete(){
-            callbackCount++;
-            if(callbackCount >= 2){
-                res.render('order', context);
-            }
-
+            res.render('orders', context);
         }
     });
 
@@ -39,7 +48,7 @@ module.exports = function(){
         function complete(){
             callbackCount++;
             if(callbackCount >= 2){
-                res.render('update-order', context);
+                res.render('updateOrder', context);
             }
 
         }
@@ -49,7 +58,7 @@ module.exports = function(){
 
     router.post('/', function(req, res){
         var mysql = req.app.get('mysql');
-        var sql = "INSERT INTO Orders VALUES (?,?,?,?,?)";
+        var sql = "INSERT INTO Orders (orderID, customerID, orderDate, shippedDate, total) VALUES (?,?,?,?,?)";
         var inserts = [req.body.orderID];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
@@ -63,10 +72,10 @@ module.exports = function(){
 
     /* The URI that update data is sent to in order to update an order */
 
-    router.put('/:id', function(req, res){
+    router.put('/:orderID', function(req, res){
         var mysql = req.app.get('mysql');
         var sql = "UPDATE Orders";
-        var inserts = [req.body.orderID, req.body.customerID, req.body.orderDate, req.body.shippedDate, req.body.total, req.params.id];
+        var inserts = [req.body.orderID, req.body.orderID, req.body.orderDate, req.body.shippedDate, req.body.total, req.params.orderID];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
@@ -80,10 +89,10 @@ module.exports = function(){
 
     /* Route to delete an order*/
 
-    router.delete('/:id', function(req, res){
+    router.delete('/:orderID', function(req, res){
         var mysql = req.app.get('mysql');
-        var sql = "DELETE FROM orders WHERE id = ?";
-        var inserts = [req.params.id];
+        var sql = "DELETE FROM orders WHERE orderID = ?";
+        var inserts = [req.params.orderID];
         sql = mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
