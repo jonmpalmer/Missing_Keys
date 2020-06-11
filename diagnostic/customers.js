@@ -34,7 +34,7 @@ module.exports = function(){
         var mysql = req.app.get('mysql');
         getCustomers(res, mysql, context, complete);
         function complete(){
-            res.render('customer', context);
+            res.render('customers', context);
         }
     });
 
@@ -44,7 +44,7 @@ module.exports = function(){
         var mysql = req.app.get('mysql');
         getCustomer(res, mysql, context, req.params.customerID, complete);
         function complete(){
-            res.render('update-customer', context);
+            res.render('updateCustomer', context);
         }
     });
 
