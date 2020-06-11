@@ -47,6 +47,7 @@ module.exports = function(){
         getOrder(res, mysql, context, req.params.id, complete);
         function complete(){
             res.render('update-order', context);
+        }
     });
 
     /* Adds an order */
