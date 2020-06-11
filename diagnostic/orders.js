@@ -30,7 +30,7 @@ module.exports = function(){
     /*Display all orders */
 
     router.get('/', function(req, res){
-        var context = {"SELECT orderID, customerID, orderDate, shippedDate, total FROM Orders WHERE orderID = ?"};
+        var context = {};
         context.jsscripts = ["deleteOrder.js"];
         var mysql = req.app.get('mysql');
         getOrder(res, mysql, context, complete);
