@@ -3,7 +3,7 @@ module.exports = function(){
     var router = express.Router();
 
     function getCustomers(res, mysql, context, complete){
-        mysql.pool.query("SELECT Customers.customerID, Customers.firstName, Customers.lastName, Addresses.addressLine1, Addresses.addressLine2, Addresses.city, Addresses.state Addresses.zip, Customers.phone, Customers.email,Payments.paymentIDFROM Customers, Addresses, PaymentsWHERE Customers.addressID = Addresses.addressID", function(error, results, fields){
+        mysql.pool.query("SELECT customerID, firstName, lastName, phone, email FROM Customers", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -35,10 +35,9 @@ module.exports = function(){
         context.jsscripts = ["selectedCustomer.js", "updateCustomer.js"];
         var mysql = req.app.get('mysql');
         getCustomer(res, mysql, context, req.params.id, complete);
-        getAddress(res, mysql, context, complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 2){
+            if(callbackCount >= 1){
                 res.render('update-customer', context);
             }
 
