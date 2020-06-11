@@ -12,35 +12,39 @@ module.exports = function(){
             complete();
         });
     }
+    
+    function getCustomer(res, mysql, context, id, complete){
+        var sql = "SELECT customerID, firstName, lastName, phone, email FROM Customers WHERE id = ?";
+        var inserts = [id];
+        mysql.pool.query(sql, inserts, function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.person = results[0];
+            complete();
+        });
+    }
 
     /*Display all customers*/
 
     router.get('/', function(req, res){
-        var callbackCount = 0;
         var context = {};
         context.jsscripts = ["deleteCustomer.js"];
         var mysql = req.app.get('mysql');
-        getCustomer(res, mysql, context, complete);
+        getCustomers(res, mysql, context, complete);
         function complete(){
-            callbackCount++;
-            if(callbackCount >= 1){
-                res.render('customer', context);
-            }
+            res.render('customer', context);
         }
     });
 
     router.get('/:id', function(req, res){
-        callbackCount = 0;
         var context = {};
         context.jsscripts = ["selectedCustomer.js", "updateCustomer.js"];
         var mysql = req.app.get('mysql');
         getCustomer(res, mysql, context, req.params.id, complete);
         function complete(){
-            callbackCount++;
-            if(callbackCount >= 1){
-                res.render('update-customer', context);
-            }
-
+            res.render('update-customer', context);
         }
     });
 
