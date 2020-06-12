@@ -40,7 +40,7 @@ module.exports = function(){
 
     router.get('/:supplierID', function(req, res){
         var context = {};
-        context.jsscripts = ["selectedSupplier.js", "updateSupplier.js"];
+        context.jsscripts = ["updateSupplier.js"];
         var mysql = req.app.get('mysql');
         getSupplier(res, mysql, context, req.params.supplierID, complete);
         function complete(){
