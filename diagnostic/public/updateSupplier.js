@@ -1,6 +1,6 @@
-function updateSupplier(id){
+function updateSupplier(supplierID){
     $.ajax({
-        url: '/suppliers/' + id,
+        url: '/suppliers/' + supplierID,
         type: 'PUT',
         data: $('#update-supplier').serialize(),
         success: function(result){
