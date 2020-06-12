@@ -8,7 +8,7 @@ var handlebars = require('express-handlebars').create({defaultLayout:'main'});
 var head = style.css.getElementsByTagName('head')[0];
 
 var style = style.css.createElement('link');
-style.href = style.css';
+style.href = style.css;
 style.type = 'text/css';
 style.rel = 'stylesheet';
 head.append(style);
