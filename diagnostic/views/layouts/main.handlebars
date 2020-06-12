@@ -16,6 +16,9 @@
 		    <a href="/products">Products</a>
 		    <a href="/orders">Orders</a> 
 		</div>
+		{{#each jsscripts}}
+   		<script src="/static/{{this}}"></script>
+    		{{/each}}
 	</head>	
 	<body>
 		{{{body}}}
