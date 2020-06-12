@@ -38,7 +38,7 @@ module.exports = function(){
         }
     });
 
-    router.get('/:customerID', function(req, res){
+    router.get('/:id', function(req, res){
         var context = {};
         context.jsscripts = ["updateCustomer.js"];
         var mysql = req.app.get('mysql');
@@ -66,7 +66,7 @@ module.exports = function(){
 
     /* The URI that update data is sent to in order to update a customer */
 
-    router.put('/:customerID', function(req, res){
+    router.put('/:id', function(req, res){
         var mysql = req.app.get('mysql');
         var sql = "UPDATE Customers SET firstName = ?, lastName = ?, phone = ?, email = ? WHERE customerID = ?;";
         var inserts = [req.body.firstName, req.body.lastName, req.body.phone, req.body.email, req.params.customerID];
@@ -83,7 +83,7 @@ module.exports = function(){
 
     /* Route to delete a customer, returns a 202 upon success. */
 
-    router.delete('/:customerID', function(req, res){
+    router.delete('/:id', function(req, res){
         var mysql = req.app.get('mysql');
         var sql = "DELETE * FROM Customers WHERE customerID = ?";
         var inserts = [req.params.customerID];
