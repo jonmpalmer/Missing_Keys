@@ -5,17 +5,13 @@ var bodyParser = require('body-parser');
 var app = express();
 var handlebars = require('express-handlebars').create({defaultLayout:'main'});
 
-addCSS('style.css');
+var head = style.css.getElementsByTagName('head')[0];
 
-function addCSS(filename){
- var head = document.getElementsByTagName('head')[0];
-
- var style = document.createElement('link');
- style.href = filename;
- style.type = 'text/css';
- style.rel = 'stylesheet';
- head.append(style);
-}
+var style = style.css.createElement('link');
+style.href = style.css';
+style.type = 'text/css';
+style.rel = 'stylesheet';
+head.append(style);
 
 app.engine('handlebars', handlebars.engine);
 app.use(bodyParser.urlencoded({extended:true}));
