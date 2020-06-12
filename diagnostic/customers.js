@@ -52,8 +52,8 @@ module.exports = function(){
 
     router.post('/', function(req, res){
         var mysql = req.app.get('mysql');
-        var sql = "INSERT INTO Customers (customerID, firstName, lastName, phone, email) VALUES (?,?,?,?,?)";
-        var inserts = [req.body.addressID, req.body.firstName, req.body.lastName, req.body.phone, req.body.email];
+        var sql = "INSERT INTO Customers (firstName, lastName, phone, email) VALUES (?,?,?,?)";
+        var inserts = [req.body.firstName, req.body.lastName, req.body.phone, req.body.email];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
