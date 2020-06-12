@@ -34,8 +34,8 @@
 		    <td>{{email}}</td>
 		    <td>{{phone}}</td>
 		    <td>{{addressID}}</td>
-		    <td><button onclick= "deleteAccount({{customerID}})">Delete</button></td>
-		    <td><a href="update_account.html">Update</a></td>
+		    <td><button onclick= "deleteCustomer({{customerID}})">Delete</button></td>
+		    <td><a href="/customer/{{customerID}}">Update</a></td>
 		    <td><a href="accounts_home.html">View</a></td>
 		</tr>
 		{{/each}}
