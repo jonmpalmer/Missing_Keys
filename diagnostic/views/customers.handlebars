@@ -42,7 +42,38 @@
 	    </tbody>
 	</table>
     </div>
-    <div class="csignup-head">
-	<p><a href="add_account.html">Add Account</a></p>
-    </div>
+	<div class="site-form">
+	    <form id="addcustomer" action="/customers" method='post">
+		<div class="form-email">
+		    <label for="email">Email:</label>
+		    <input type="text" name="email">
+		</div>
+		    <label for="fname">First name:</label>
+		    <input type="text" name="fname" required>
+		</div>
+		<div class="form-lname">
+		    <label for="lname">Last name:</label>
+		    <input type="text" name="lname" required>
+		</div>
+		<div class="form-address1">
+		    <label for="add1">Address Line 1:</label>
+		    <input type="text" name="add1" required>
+		</div>
+		<div class="form-address2">
+		    <label for="add2">Address Line 2:</label>
+		    <input type="text" name="add2">
+		</div>
+		<div class="form-zip">
+		    <label for="zip">ZIP:</label>
+		    <input type="text" name="zip" required>
+		</div>
+		<div class="form-item">
+		    <label for="phone">Phone:</label>
+		    <input type="text" name="phone">
+		</div>
+		<div class="form-item">
+		    <input type="submit" value="Submit">
+		</div>
+	    </form>
+	</div>
 </table>
