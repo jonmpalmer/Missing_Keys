@@ -42,8 +42,8 @@
                       <td>{{orderDate}}</td>
                       <td>{{shippedDate}}</td>
                       <td>{{total}}</td>
-                      <td><button onclick= "viewOrder {{orderID}})">View Order</button></td>
-                      <td><button onclick= "deleteProduct {{orderID}})">Delete</button></td>
+                      <td><button onclick= "viewOrder({{orderID}})">View Order</button></td>
+                      <td><button onclick= "deleteProduct({{orderID}})">Delete</button></td>
                       <td><a href="/orders/{{orderID}}">Update</a></td>
                   </tr>
                   {{/each}}
@@ -60,7 +60,7 @@
                   <p class="order-productid">{{productID}}</p>
                   <p class="order-supplier">{{supplierID}}</p>
                   <p class="order-quantity">{{quant}}</p>
-                  <p><button onclick= "deleteOrderItem {{id}})">Delete</button>
+                  <p><button onclick= "deleteOrderItem{{id}})">Delete</button>
                   <a href="update_order.html">Update</a></p>  
                 </div>
               </div>
