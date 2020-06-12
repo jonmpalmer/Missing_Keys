@@ -16,7 +16,6 @@
 <div class="products">
     <h3 class="products">Suppliers</h3>
 </div>
-<div>
     <table>
         <thead>
             <th>Supplier</th>
@@ -37,8 +36,14 @@
             </tr>
             {{/each}} 
         </tbody>
+            <form id="addSupplier" action="/suppliers" method="post">
+            Supplier: <input type="text" name="name" required><br>
+            Email: <input type="text" name="email" required><br>
+            Address: <input type="text" name="add1"><br>
+            Address: <input type="text" name="add2"><br>
+            Zipcode: <input type="text" name="zip"><br>
+            Phone: <input type="text" name="phone"><br>
+            <input type="submit" value="Submit">
+            </form>
     </table>
-</div>
-<div class="signup-head">
-    <p><a href="add_supplier.html">Add Supplier</a></p>
-</div>
+    
