@@ -41,7 +41,7 @@ module.exports = function(){
 
     router.get('/:productID', function(req, res){
         var context = {};
-        context.jsscripts = ["selectedProduct.js", "updateProduct.js"];
+        context.jsscripts = ["updateProduct.js"];
         var mysql = req.app.get('mysql');
         getProduct(res, mysql, context, req.params.productID, complete);
         function complete(){
@@ -49,7 +49,7 @@ module.exports = function(){
         }
     });
 
-    /* Adds an product */
+    /* Adds a product */
 
     router.post('/', function(req, res){
         var mysql = req.app.get('mysql');
