@@ -52,14 +52,14 @@ module.exports = function(){
 
     router.post('/', function(req, res){
         var mysql = req.app.get('mysql');
-        var sql = "INSERT INTO Suppliers (addressID, name, phone, email) VALUES (?,?,?,?)";
-        var inserts = [req.body.addressID, req.body.name, req.body.phone, req.body.email];
+        var sql = "INSERT INTO Suppliers (name, phone, email) VALUES (?,?,?)";
+        var inserts = [req.body.name, req.body.phone, req.body.email];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
             }else{
-                res.redirect('/supplers');
+                res.redirect('/suppliers');
             }
         });
     });
