@@ -13,7 +13,7 @@ module.exports = function(){
         });
     }
         
-    function getProduct(res, mysql, context, customerID, complete){
+    function getProduct(res, mysql, context, productID, complete){
         var sql = "SELECT name, type, model, description, quant, price FROM Products WHERE productID = ?";
         var inserts = [productID];
         mysql.pool.query(sql, inserts, function(error, results, fields){
