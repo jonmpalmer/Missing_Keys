@@ -29,7 +29,6 @@ module.exports = function(){
     /*Display all products */
 
     router.get('/', function(req, res){
-        var callbackCount = 0;
         var context = {};
         context.jsscripts = ["deleteProduct.js"];
         var mysql = req.app.get('mysql');
