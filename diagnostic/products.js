@@ -21,7 +21,7 @@ module.exports = function(){
                 res.write(JSON.stringify(error));
                 res.end();
             }
-            context.customer = results[0];
+            context.product = results[0];
             complete();
         });
     }
