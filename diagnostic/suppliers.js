@@ -85,7 +85,7 @@ module.exports = function(){
 
     router.delete('/:supplierID', function(req, res){
         var mysql = req.app.get('mysql');
-        var sql = "DELETE FROM supplers WHERE supplierID = ?";
+        var sql = "DELETE FROM suppliers WHERE supplierID = ?";
         var inserts = [req.params.supplierID];
         sql = mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
