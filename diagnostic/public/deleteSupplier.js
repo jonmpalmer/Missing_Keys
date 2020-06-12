@@ -1,6 +1,6 @@
-function deleteSupplier(id){
+function deleteSupplier(supplierID){
     $.ajax({
-        url: '/suppliers/' + id,
+        url: '/suppliers/' + supplierID,
         type: 'DELETE',
         success: function(result){
             window.location.reload(true);
