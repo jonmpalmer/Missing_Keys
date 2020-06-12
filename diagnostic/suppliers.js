@@ -44,7 +44,7 @@ module.exports = function(){
         var mysql = req.app.get('mysql');
         getSupplier(res, mysql, context, req.params.supplierID, complete);
         function complete(){
-            res.render('update-supplier', context);
+            res.render('update-suppliers', context);
         }
     });
 
