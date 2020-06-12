@@ -85,7 +85,7 @@ module.exports = function(){
 
     router.delete('/:customerID', function(req, res){
         var mysql = req.app.get('mysql');
-        var sql = "DELETE FROM Customers WHERE customerID = ?";
+        var sql = "DELETE * FROM Customers WHERE customerID = ?";
         var inserts = [req.params.customerID];
         sql = mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
