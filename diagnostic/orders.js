@@ -46,7 +46,7 @@ module.exports = function(){
         var mysql = req.app.get('mysql');
         getOrder(res, mysql, context, req.params.id, complete);
         function complete(){
-            res.render('update-order', context);
+            res.render('update-orders', context);
         }
     });
 
