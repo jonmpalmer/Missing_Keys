@@ -21,7 +21,6 @@
             <th>Supplier</th>
             <th>Email</th>
             <th>Phone</th>
-            <th>Location</th>
         </thead>
         <tbody>
         {{#each suppliers}} 
@@ -29,7 +28,6 @@
                 <td>{{name}}</td>
                 <td>{{email}}</td>
                 <td>{{phone}}</td>
-                <td>{{addressID}}</td>
                 <td><button onclick= "deleteSupplier({{supplierID}})">Delete</button></td>
                 <td><a href="/suppliers/{{supplierID}}">Update</a></td>
                 <td><a href="suppliers_home.html">View</a></td>
