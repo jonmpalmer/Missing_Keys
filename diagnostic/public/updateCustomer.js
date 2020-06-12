@@ -1,6 +1,6 @@
-function updateCustomer(id){
+function updateCustomer(customerID){
     $.ajax({
-        url: '/customers/' + id,
+        url: '/customers/' + customerID,
         type: 'PUT',
         data: $('#update-customer').serialize(),
         success: function(result){
